@@ -41,5 +41,23 @@ def naming_system
   #  Species
   # So, if we have the "Kingdom" node we should be able to "tunnel" into the
   # HoH all the way to Species!
+  
+  kingdomHash = createNode("Kingdom")
+  phylumHash =  addSubcategory(kingdomHash, "Phylum")
+  classHash = addSubcategory(phylumHash, "Class")
+  orderHash = addSubcategory(classHash, "Order")
+  familyHash = addSubcategory(orderHash, "Family")
+  genusHash = addSubcategory(familyHash, "Genus")
+  speciesHash = addSubcategory(genusHash, "Species")
+            
+  return kingdomHash
+end
 
+def addSubcategory(parent, sub)
+  parent[:sub_category] = createNode(sub)
+  return parent[:sub_category]
+end
+
+def createNode(label) 
+  return {:label => label, :sub_category => nil}
 end
